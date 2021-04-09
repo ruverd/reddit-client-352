@@ -19,7 +19,9 @@ export default function Home({ posts }: HomeProps) {
 }
 
 export async function getServerSideProps() {
-	const { data } = await fetch('http://localhost:3000/api/posts').then((res) =>
+	const baseUrl = (process.env.Vercel_URL) ? process.env.Vercel_URL : 'http://localhost:3000/api/posts';
+
+	const { data } = await fetch(baseUrl).then((res) =>
 		res.json()
 	);
 
